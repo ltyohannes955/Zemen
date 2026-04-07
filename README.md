@@ -1,17 +1,30 @@
-# Zemen (Phase 1)
+# Zemen
 
-Production-ready monorepo foundation for an Ethiopian calendar platform:
+Ethiopian Calendar Engine + React Library, packaged as a pnpm + Turborepo monorepo.
 
-- `@zemen/core`: Ethiopian calendar core logic (pure TypeScript)
-- `@zemen/react`: React component library built on `@zemen/core`
-- `@zemen/web`: Next.js app (App Router)
+## Packages
 
-## Quickstart
+- `@zemen/core` — Ethiopian calendar engine (framework-independent TypeScript)
+- `@zemen/react` — React component library built on `@zemen/core`
+- `@zemen/web` — Next.js app consuming `@zemen/react`
+
+## Setup
+
+Prereqs: Node.js 20+, `pnpm`.
 
 ```bash
 pnpm install
 pnpm dev
 ```
 
-Then open the Next.js app and confirm the homepage renders **"Zemen Calendar"**.
+## Scripts
 
+```bash
+pnpm lint
+pnpm test
+pnpm build
+```
+
+## License
+
+MIT. See `LICENSE`.
