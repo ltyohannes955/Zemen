@@ -4,4 +4,12 @@ module.exports = {
   plugins: ["@typescript-eslint"],
   extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
   ignorePatterns: ["**/dist/**", "**/.next/**", "**/node_modules/**"],
+  overrides: [
+    {
+      files: ["**/next-env.d.ts"],
+      rules: {
+        "@typescript-eslint/triple-slash-reference": "off",
+      },
+    },
+  ],
 };

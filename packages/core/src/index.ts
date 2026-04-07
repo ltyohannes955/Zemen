@@ -4,8 +4,6 @@ export type EthiopianDate = {
   day: number; // 1–30 (Pagume: 1–5/6)
 };
 
-const MS_PER_DAY = 86_400_000;
-
 function floorDiv(a: number, b: number): number {
   return Math.floor(a / b);
 }
@@ -152,7 +150,7 @@ function unixDaysToGregorian(unixDays: number): { year: number; month: number; d
     throw new RangeError('unixDays must be a finite integer');
   }
 
-  let z = unixDays + 719468;
+  const z = unixDays + 719468;
   const era = floorDiv(z >= 0 ? z : z - 146096, 146097);
   const doe = z - era * 146097; // [0, 146096]
   const yoe = floorDiv(
