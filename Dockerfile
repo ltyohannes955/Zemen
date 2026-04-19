@@ -27,8 +27,10 @@ RUN pnpm install --frozen-lockfile
 
 # Build the project and its dependencies
 COPY --from=builder /app/out/full/ .
-# Also copy turbo.json just in case it's missed
+# Also copy turbo.json and any root level tsconfig that child packages extend just in case it's missed
 COPY turbo.json turbo.json
+COPY tsconfig.base.json tsconfig.base.json
+
 
 RUN pnpm turbo run build --filter=@zemen/web...
 
