@@ -1,0 +1,12 @@
+Dockerfile
+.dockerignore
+node_modules
+npm-debug.log
+README.md
+.next
+.git
+.turbo
+apps/web/.next
+apps/web/node_modules
+packages/*/node_modules
+packages/*/dist

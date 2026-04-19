@@ -1,0 +1,129 @@
+﻿node.exe : ΓÇó turbo 2.9.5
+At C:\Users\Welcome\AppData
+\Roaming\npm\npx.ps1:24 
+char:5
++     & "node$exe"  "$based
+ir/node_modules/npm/bin/npx
+-cli.js" $args
++     ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~
+    + CategoryInfo         
+     : NotSpecified: (ΓÇó  
+   turbo 2.9.5:String) [   
+ ], RemoteException
+    + FullyQualifiedErrorI 
+   d : NativeCommandError
+ 
+
+   ΓÇó Packages in scope: @zemen/core, @zemen/react, @zemen/web
+   ΓÇó Running build in 3 packages
+   ΓÇó Remote caching disabled
+
+@zemen/core:build: cache hit, replaying logs 90b1375b82343ee2
+@zemen/core:build: 
+@zemen/core:build: > @zemen/core@0.0.0 build C:\Users\Welcome\Desktop\code\mine\Zemen\packages\core
+@zemen/core:build: > tsup
+@zemen/core:build: 
+@zemen/core:build: [34mCLI[39m Building entry: src/index.ts
+@zemen/core:build: [34mCLI[39m Using tsconfig: tsconfig.json
+@zemen/core:build: [34mCLI[39m tsup v8.5.1
+@zemen/core:build: [34mCLI[39m Using tsup config: C:\Users\Welcome\Desktop\code\mine\Zemen\packages\core\tsup.config.ts
+@zemen/core:build: [34mCLI[39m Target: es2022
+@zemen/core:build: [34mCLI[39m Cleaning output folder
+@zemen/core:build: [34mESM[39m Build start
+@zemen/core:build: [32mESM[39m [1mdist\index.js     [22m[32m5.81 KB[39m
+@zemen/core:build: [32mESM[39m [1mdist\index.js.map [22m[32m12.60 KB[39m
+@zemen/core:build: [32mESM[39m ΓÜí∩╕Å Build success in 20ms
+@zemen/core:build: [34mDTS[39m Build start
+@zemen/core:build: [32mDTS[39m ΓÜí∩╕Å Build success in 711ms
+@zemen/core:build: [32mDTS[39m [1mdist\index.d.ts [22m[32m1.57 KB[39m
+@zemen/react:build: cache hit, replaying logs da6854df811d14a6
+@zemen/react:build: 
+@zemen/react:build: > @zemen/react@0.0.0 build C:\Users\Welcome\Desktop\code\mine\Zemen\packages\react
+@zemen/react:build: > pnpm run build:css && tsup
+@zemen/react:build: 
+@zemen/react:build: 
+@zemen/react:build: > @zemen/react@0.0.0 build:css C:\Users\Welcome\Desktop\code\mine\Zemen\packages\react
+@zemen/react:build: > node -e "require('fs').mkdirSync('dist',{recursive:true})" && tailwindcss -i ./src/styles.css -o ./dist/styles.css
+@zemen/react:build: 
+@zemen/react:build: 
+@zemen/react:build: Rebuilding...
+@zemen/react:build: 
+@zemen/react:build: Done in 221ms.
+@zemen/react:build: [34mCLI[39m Building entry: src/index.ts
+@zemen/react:build: [34mCLI[39m Using tsconfig: tsconfig.json
+@zemen/react:build: [34mCLI[39m tsup v8.5.1
+@zemen/react:build: [34mCLI[39m Using tsup config: C:\Users\Welcome\Desktop\code\mine\Zemen\packages\react\tsup.config.ts
+@zemen/react:build: [34mCLI[39m Target: es2022
+@zemen/react:build: [34mCLI[39m Cleaning output folder
+@zemen/react:build: [34mESM[39m Build start
+@zemen/react:build: [32mESM[39m [1mdist\index.js     [22m[32m736.00 B[39m
+@zemen/react:build: [32mESM[39m [1mdist\index.js.map [22m[32m935.00 B[39m
+@zemen/react:build: [32mESM[39m ΓÜí∩╕Å Build success in 24ms
+@zemen/react:build: [34mDTS[39m Build start
+@zemen/react:build: [32mDTS[39m ΓÜí∩╕Å Build success in 1020ms
+@zemen/react:build: [32mDTS[39m [1mdist\index.d.ts [22m[32m113.00 B[39m
+@zemen/web:build: cache miss, executing d7a3c5ab1cab0018
+@zemen/web:build: 
+@zemen/web:build: > @zemen/web@0.0.0 build C:\Users\Welcome\Desktop\code\mine\Zemen\apps\web
+@zemen/web:build: > next build
+@zemen/web:build: 
+@zemen/web:build:    Γû▓ Next.js 15.5.14
+@zemen/web:build: 
+@zemen/web:build:    Creating an optimized production build ...
+@zemen/web:build:  Γ£ô Compiled successfully in 2.3s
+@zemen/web:build:    Linting and checking validity of types ...
+@zemen/web:build:    Collecting page data ...
+@zemen/web:build:    Generating static pages (0/4) ...
+@zemen/web:build:    Generating static pages (1/4) 
+@zemen/web:build:    Generating static pages (2/4) 
+@zemen/web:build:    Generating static pages (3/4) 
+@zemen/web:build:  Γ£ô Generating static pages (4/4)
+@zemen/web:build:    Finalizing page optimization ...
+@zemen/web:build:    Collecting build traces ...
+@zemen/web:build:  ΓÜá Failed to copy traced files for C:\Users\Welcome\Desktop\code\mine\Zemen\apps\web\.next\server\pages\_app.js [Error: EPERM: operation not permitted, symlink 'C:\Users\Welcome\Desktop\code\mine\Zemen\node_modules\.pnpm\react@19.2.4\node_modules\react' -> 'C:\Users\Welcome\Desktop\code\mine\Zemen\apps\web\.next\standalone\apps\web\node_modules\react'] {
+@zemen/web:build:   errno: -4048,
+@zemen/web:build:   code: 'EPERM',
+@zemen/web:build:   syscall: 'symlink',
+@zemen/web:build:   path: 'C:\\Users\\Welcome\\Desktop\\code\\mine\\Zemen\\node_modules\\.pnpm\\react@19.2.4\\node_modules\\react',
+@zemen/web:build:   dest: 'C:\\Users\\Welcome\\Desktop\\code\\mine\\Zemen\\apps\\web\\.next\\standalone\\apps\\web\\node_modules\\react'
+@zemen/web:build: }
+@zemen/web:build:  ΓÜá Failed to copy traced files for C:\Users\Welcome\Desktop\code\mine\Zemen\apps\web\.next\server\pages\_error.js [Error: EPERM: operation not permitted, symlink 'C:\Users\Welcome\Desktop\code\mine\Zemen\node_modules\.pnpm\react-dom@19.2.4_react@19.2.4\node_modules\react-dom' -> 'C:\Users\Welcome\Desktop\code\mine\Zemen\apps\web\.next\standalone\node_modules\.pnpm\next@15.5.14_react-dom@19.2.4_react@19.2.4__react@19.2.4\node_modules\react-dom'] {
+@zemen/web:build:   errno: -4048,
+@zemen/web:build:   code: 'EPERM',
+@zemen/web:build:   syscall: 'symlink',
+@zemen/web:build:   path: 'C:\\Users\\Welcome\\Desktop\\code\\mine\\Zemen\\node_modules\\.pnpm\\react-dom@19.2.4_react@19.2.4\\node_modules\\react-dom',
+@zemen/web:build:   dest: 'C:\\Users\\Welcome\\Desktop\\code\\mine\\Zemen\\apps\\web\\.next\\standalone\\node_modules\\.pnpm\\next@15.5.14_react-dom@19.2.4_react@19.2.4__react@19.2.4\\node_modules\\react-dom'
+@zemen/web:build: }
+@zemen/web:build:  ΓÜá Failed to copy traced files for C:\Users\Welcome\Desktop\code\mine\Zemen\apps\web\.next\server\pages\_document.js [Error: EPERM: operation not permitted, symlink 'C:\Users\Welcome\Desktop\code\mine\Zemen\node_modules\.pnpm\client-only@0.0.1\node_modules\client-only' -> 'C:\Users\Welcome\Desktop\code\mine\Zemen\apps\web\.next\standalone\node_modules\.pnpm\styled-jsx@5.1.6_react@19.2.4\node_modules\client-only'] {
+@zemen/web:build:   errno: -4048,
+@zemen/web:build:   code: 'EPERM',
+@zemen/web:build:   syscall: 'symlink',
+@zemen/web:build:   path: 'C:\\Users\\Welcome\\Desktop\\code\\mine\\Zemen\\node_modules\\.pnpm\\client-only@0.0.1\\node_modules\\client-only',
+@zemen/web:build:   dest: 'C:\\Users\\Welcome\\Desktop\\code\\mine\\Zemen\\apps\\web\\.next\\standalone\\node_modules\\.pnpm\\styled-jsx@5.1.6_react@19.2.4\\node_modules\\client-only'
+@zemen/web:build: }
+@zemen/web:build: 
+@zemen/web:build: > Build error occurred
+@zemen/web:build: [Error: EPERM: operation not permitted, symlink 'C:\Users\Welcome\Desktop\code\mine\Zemen\node_modules\.pnpm\@next+env@15.5.14\node_modules\@next\env' -> 'C:\Users\Welcome\Desktop\code\mine\Zemen\apps\web\.next\standalone\node_modules\.pnpm\next@15.5.14_react-dom@19.2.4_react@19.2.4__react@19.2.4\node_modules\@next\env'] {
+@zemen/web:build:   errno: -4048,
+@zemen/web:build:   code: 'EPERM',
+@zemen/web:build:   syscall: 'symlink',
+@zemen/web:build:   path: 'C:\\Users\\Welcome\\Desktop\\code\\mine\\Zemen\\node_modules\\.pnpm\\@next+env@15.5.14\\node_modules\\@next\\env',
+@zemen/web:build:   dest: 'C:\\Users\\Welcome\\Desktop\\code\\mine\\Zemen\\apps\\web\\.next\\standalone\\node_modules\\.pnpm\\next@15.5.14_react-dom@19.2.4_react@19.2.4__react@19.2.4\\node_modules\\@next\\env'
+@zemen/web:build: }
+@zemen/web:build: ΓÇëELIFECYCLEΓÇë Command failed with exit code 1.
+ ERROR  @zemen/web#build: 
+command (C:\Users\Welcome\D
+esktop\code\mine\Zemen\apps
+\web) C:\Users\Welcome\AppD
+ata\Roaming\npm\pnpm.cmd 
+run build exited (1)
+
+ Tasks:    2 successful, 3 total
+Cached:    2 cached, 3 total
+  Time:    44.714s 
+Failed:    @zemen/web#build
+
+ ERROR  run failed: 
+command  exited (1)
