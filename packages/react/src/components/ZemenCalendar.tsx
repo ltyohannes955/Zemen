@@ -8,7 +8,7 @@ export function ZemenCalendar(): React.JSX.Element {
     <div className="rounded-lg border p-4">
       <div className="text-lg font-semibold">Zemen Calendar</div>
       <div className="text-sm text-gray-600">
-        Linked core placeholder: {today.year}-{today.month}-{today.day}
+        core placeholder: {today.year}-{today.month}-{today.day}
       </div>
     </div>
   );
