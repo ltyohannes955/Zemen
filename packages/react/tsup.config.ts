@@ -8,5 +8,6 @@ export default defineConfig({
   clean: true,
   target: 'es2022',
   external: ['react', 'react-dom'],
+  banner: { js: "'use client';" },
 });
 

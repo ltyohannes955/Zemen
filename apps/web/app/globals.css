@@ -7,3 +7,34 @@ body {
   height: 100%;
 }
 
+.gradient-text {
+  background: linear-gradient(135deg, #10b981 0%, #34d399 50%, #6ee7b7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark .gradient-text {
+  background: linear-gradient(135deg, #34d399 0%, #10b981 50%, #6ee7b7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@layer utilities {
+  .card-hover {
+    @apply transition-all duration-300;
+  }
+  .card-hover:hover {
+    @apply -translate-y-0.5 shadow-lg dark:shadow-emerald-500/5;
+  }
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-6 py-3 font-medium text-white hover:bg-emerald-500 active:scale-[0.97] transition-all duration-200;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 rounded-lg border border-gray-200 dark:border-gray-700 px-6 py-3 font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 active:scale-[0.97] transition-all duration-200;
+  }
+  .card {
+    @apply rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#111827] transition-colors duration-300;
+  }
+}
