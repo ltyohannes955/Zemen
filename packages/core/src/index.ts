@@ -260,3 +260,13 @@ export function isValid(ethDate: EthiopianDate): boolean {
     return false;
   }
 }
+
+export {
+  getMonthName,
+  getLocaleData,
+  registerLocale,
+  isSupportedLocale,
+  supportedLocales,
+  type Locale,
+  type LocaleData,
+} from './locales';
