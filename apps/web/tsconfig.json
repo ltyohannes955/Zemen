@@ -7,7 +7,9 @@
       "@zemen/core": ["../../packages/core/src/index.ts"],
       "@zemen/core/*": ["../../packages/core/src/*"],
       "@zemen/react": ["../../packages/react/src/index.ts"],
-      "@zemen/react/*": ["../../packages/react/src/*"]
+      "@zemen/react/*": ["../../packages/react/src/*"],
+      "@zemen/scheduler": ["../../packages/scheduler/src/index.ts"],
+      "@zemen/scheduler/*": ["../../packages/scheduler/src/*"]
     },
     "plugins": [
       {

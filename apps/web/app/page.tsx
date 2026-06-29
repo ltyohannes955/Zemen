@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import Link from 'next/link';
 import { ZemenCalendar } from '@zemen/react';
 import { toEthiopianLocal, getMonthName } from '@zemen/core';
 import { useTheme } from './theme-provider';
@@ -99,7 +100,7 @@ export default function HomePage() {
             <nav className="hidden md:flex items-center gap-6 text-sm text-gray-500 dark:text-gray-400">
               <a href="#features" className="hover:text-gray-900 dark:hover:text-white transition-colors">Features</a>
               <a href="#why" className="hover:text-gray-900 dark:hover:text-white transition-colors">Why</a>
-              <a href="#docs" className="hover:text-gray-900 dark:hover:text-white transition-colors">Docs</a>
+              <Link href="/docs/introduction" className="hover:text-gray-900 dark:hover:text-white transition-colors">Docs</Link>
             </nav>
           </div>
           <div className="flex items-center gap-4">
@@ -366,6 +367,41 @@ function App() {
                 </code>
               </pre>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Docs Preview Section */}
+      <section className="border-t border-gray-200 dark:border-gray-800 transition-colors duration-300">
+        <div className="mx-auto max-w-7xl px-6 py-24">
+          <div className="text-center mb-12 animate-fade-in-up" style={{ animationFillMode: 'both' }}>
+            <h2 className="text-3xl font-bold tracking-tight">Documentation</h2>
+            <p className="mt-4 text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
+              Everything you need to integrate Zemen into your project.
+            </p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3 max-w-4xl mx-auto">
+            {[
+              { title: 'Getting Started', desc: 'Install, configure, and run your first dual-calendar app in under 5 minutes.', slug: 'installation' },
+              { title: 'Core API', desc: 'Full reference for all conversion, arithmetic, and validation functions.', slug: 'core-api' },
+              { title: 'React Components', desc: 'Component API, props, styling, and advanced usage patterns.', slug: 'react' },
+            ].map((item, i) => (
+              <a
+                key={item.slug}
+                href={`/docs/${item.slug}`}
+                className="card card-hover p-6 text-left animate-fade-in-up"
+                style={{ animationDelay: `${i * 0.1}s`, animationFillMode: 'both' }}
+              >
+                <h3 className="font-semibold mb-2">{item.title}</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">{item.desc}</p>
+              </a>
+            ))}
+          </div>
+          <div className="mt-10 text-center animate-fade-in" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>
+            <Link href="/docs/introduction" className="btn-secondary">
+              Browse Full Docs
+              <ArrowRight01Icon className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>

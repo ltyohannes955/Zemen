@@ -1,0 +1,38 @@
+{
+  "name": "@zemen/scheduler",
+  "version": "0.0.0",
+  "private": false,
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "lint": "pnpm -w exec eslint packages/scheduler --max-warnings=0",
+    "test": "pnpm exec vitest run",
+    "test:watch": "pnpm exec vitest"
+  },
+  "dependencies": {
+    "@zemen/core": "workspace:*"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.0.0"
+  }
+}

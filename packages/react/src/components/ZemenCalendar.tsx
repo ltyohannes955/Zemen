@@ -10,6 +10,15 @@ import {
   type Locale,
 } from '@zemen/core';
 
+export type SelectedDateInfo = {
+  ethYear: number;
+  ethMonth: number;
+  ethDay: number;
+  gregYear: number;
+  gregMonth: number;
+  gregDay: number;
+};
+
 type DayCell = {
   ethDay: number | null;
   gregDay: number | null;
@@ -71,9 +80,19 @@ function buildMonthGrid(year: number, month: number): DayCell[][] {
 
 export type ZemenCalendarProps = {
   locale?: Locale;
+  onSelectDate?: (date: SelectedDateInfo) => void;
+  selectedDate?: { ethYear: number; ethMonth: number; ethDay: number } | null;
+  themeColor?: string;
+  className?: string;
 };
 
-export function ZemenCalendar({ locale = 'en' }: ZemenCalendarProps): React.JSX.Element {
+export function ZemenCalendar({ 
+  locale = 'en', 
+  onSelectDate, 
+  selectedDate,
+  themeColor = '#0B3D16',
+  className = ''
+}: ZemenCalendarProps): React.JSX.Element {
   const ethToday = React.useMemo(() => toEthiopianLocal(new Date()), []);
   const [ethYear, setEthYear] = React.useState(ethToday.year);
   const [ethMonth, setEthMonth] = React.useState(ethToday.month);
@@ -116,71 +135,80 @@ export function ZemenCalendar({ locale = 'en' }: ZemenCalendarProps): React.JSX.
   const isCurrentMonth = ethYear === ethToday.year && ethMonth === ethToday.month;
 
   return (
-    <div className="rounded-lg border border-gray-200 dark:border-gray-700 p-4 font-sans transition-colors duration-300">
-      <div className="mb-4 flex items-center justify-between">
+    <div className={`rounded-xl border border-gray-100 bg-white p-3 font-sans shadow-sm ${className}`}>
+      <div className="mb-3 flex items-center justify-between">
         <button
           onClick={() => navigate(-1)}
-          className="flex h-8 w-8 items-center justify-center rounded text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+          className="flex h-7 w-7 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-100 hover:text-gray-900 transition-colors"
           aria-label="Previous month"
         >
-          &lsaquo;
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
         </button>
         <div className="text-center">
-          <div className="text-base font-semibold text-gray-900 dark:text-gray-100">
+          <div className="text-[13px] font-bold text-gray-900 leading-tight">
             <span>{ethMonthName}</span>
-            <span className="text-gray-400"> ({gregMonthName})</span>
-            <span className="ml-2">{ethYear}</span>
-            <span className="text-gray-400"> / {firstGreg.year}</span>
+            <span className="text-gray-400 font-medium ml-1">({gregMonthName})</span>
           </div>
-          <button onClick={goToday} className="mt-0.5 text-xs text-emerald-600 dark:text-emerald-400 hover:underline">
-            Today
-          </button>
+          <div className="text-[11px] font-semibold text-gray-500 mt-0.5 cursor-pointer hover:text-gray-800 transition-colors" onClick={goToday}>
+            {ethYear} <span className="text-gray-300 mx-1">/</span> {firstGreg.year}
+          </div>
         </div>
         <button
           onClick={() => navigate(1)}
-          className="flex h-8 w-8 items-center justify-center rounded text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+          className="flex h-7 w-7 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-100 hover:text-gray-900 transition-colors"
           aria-label="Next month"
         >
-          &rsaquo;
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
         </button>
       </div>
 
-      <div className="grid grid-cols-7 gap-px">
+      <div className="grid grid-cols-7 gap-0.5">
         {weekdays.map((d) => (
-          <div key={d} className="py-1 text-center text-xs font-medium text-gray-400">
+          <div key={d} className="py-1 text-center text-[10px] font-bold text-gray-400 uppercase tracking-wider">
             {d}
           </div>
         ))}
         {grid.flatMap((week, wi) =>
           week.map((cell, di) => {
             if (cell.ethDay === null) {
-              return <div key={`${wi}-${di}`} className="h-14" />;
+              return <div key={`${wi}-${di}`} className="h-9" />;
             }
             const isToday = isCurrentMonth && cell.ethDay === ethToday.day;
+            const isSelected = selectedDate?.ethYear === ethYear && 
+                               selectedDate?.ethMonth === ethMonth && 
+                               selectedDate?.ethDay === cell.ethDay;
+            
             return (
-              <div
+              <button
                 key={`${wi}-${di}`}
-                className={`flex flex-col items-center justify-center rounded px-1 py-0.5 h-14 transition-colors duration-200 ${
-                  isToday
-                    ? 'bg-emerald-500 text-white'
-                    : 'hover:bg-gray-50 dark:hover:bg-gray-800'
-                }`}
+                onClick={() => {
+                  if (onSelectDate) {
+                    onSelectDate({
+                      ethYear: ethYear,
+                      ethMonth: ethMonth,
+                      ethDay: cell.ethDay as number,
+                      gregYear: cell.gregYear,
+                      gregMonth: cell.gregMonth,
+                      gregDay: cell.gregDay as number,
+                    });
+                  }
+                }}
+                className={`flex flex-col items-center justify-center rounded-lg h-9 w-full transition-all duration-200 relative overflow-hidden ${
+                  isSelected
+                    ? 'text-white shadow-md transform scale-105 z-10'
+                    : isToday
+                      ? 'bg-gray-100 text-gray-900 font-bold'
+                      : 'hover:bg-gray-50 text-gray-700'
+                } ${onSelectDate ? 'cursor-pointer' : 'cursor-default'}`}
+                style={isSelected ? { backgroundColor: themeColor } : {}}
               >
-                <span
-                  className={`text-base font-semibold leading-tight ${
-                    isToday ? 'text-white' : 'text-gray-900 dark:text-gray-100'
-                  }`}
-                >
+                <span className={`text-[13px] font-semibold leading-none mb-0.5 ${isSelected ? 'text-white' : ''}`}>
                   {cell.ethDay}
                 </span>
-                <span
-                  className={`text-[10px] leading-tight ${
-                    isToday ? 'text-emerald-100' : 'text-gray-400'
-                  }`}
-                >
+                <span className={`text-[9px] leading-none ${isSelected ? 'text-white/80' : 'text-gray-400 font-medium'}`}>
                   {cell.gregDay}
                 </span>
-              </div>
+              </button>
             );
           })
         )}
