@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(uuid())
+  email         String   @unique
+  passwordHash  String?
+  name          String?
+  avatarUrl     String?
+  timezone      String?
+  refreshToken  String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  oauthProviders    OAuthProvider[]
+  tasks             Task[]
+  passwordResetTokens PasswordResetToken[]
+}
+
+model OAuthProvider {
+  id         String @id @default(uuid())
+  userId     String
+  user       User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  provider   String
+  providerId String
+
+  @@unique([provider, providerId])
+}
+
+model Task {
+  id             String    @id @default(uuid())
+  userId         String
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title          String
+  description    String    @default("")
+  dateType       String
+  primaryYear    Int
+  primaryMonth   Int
+  primaryDay     Int
+  secondaryYear  Int
+  secondaryMonth Int
+  secondaryDay   Int
+  time           String?
+  priority       String    @default("none")
+  status         String    @default("pending")
+  position       Int       @default(0)
+  recurrence     Json?
+  reminder       Json?
+  tags           String[]
+  deletedAt      DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@index([userId, status])
+  @@index([userId, primaryYear, primaryMonth])
+  @@index([userId, secondaryYear, secondaryMonth])
+  @@index([userId, deletedAt])
+}
+
+model PasswordResetToken {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  token     String   @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime @default(now())
+}
