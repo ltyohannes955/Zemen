@@ -1,11 +1,6 @@
 import type { EthiopianDate } from '@zemen/core';
 import { addDays, isLeapYear, getMonthDays, getDayOfWeek, toGregorian, toEthiopian, isValid } from '@zemen/core';
-import type { RecurrenceRule, Task } from './types';
-
-function ethDateFromString(dateStr: string): EthiopianDate {
-  const [y, m, d] = dateStr.split('-').map(Number);
-  return { year: y, month: m, day: d };
-}
+import type { Task } from './types';
 
 function gregorianStringToDate(s: string): Date {
   const [y, m, d] = s.split('-').map(Number);

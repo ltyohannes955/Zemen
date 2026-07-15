@@ -1,4 +1,4 @@
-import { Module, Logger } from '@nestjs/common';
+import { Module, Logger, type Provider } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { AuthController } from './auth.controller';
@@ -15,13 +15,15 @@ else Logger.warn('Google OAuth disabled: set GOOGLE_CLIENT_ID / GOOGLE_CLIENT_SE
 if (hasGithub) Logger.log('GitHub OAuth strategy registered');
 else Logger.warn('GitHub OAuth disabled: set GITHUB_CLIENT_ID / GITHUB_CLIENT_SECRET');
 
-const providers: any[] = [AuthService, JwtStrategy];
+const providers: Provider[] = [AuthService, JwtStrategy];
 
 if (hasGoogle) {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const { GoogleStrategy } = require('./strategies/google.strategy');
   providers.push(GoogleStrategy);
 }
 if (hasGithub) {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const { GithubStrategy } = require('./strategies/github.strategy');
   providers.push(GithubStrategy);
 }

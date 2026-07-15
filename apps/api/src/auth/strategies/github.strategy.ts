@@ -13,6 +13,7 @@ export class GithubStrategy extends PassportStrategy(Strategy, 'github') {
     });
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async validate(accessToken: string, refreshToken: string, profile: any, done: (err: any, user?: any) => void) {
     const { id, displayName, emails, photos } = profile;
     done(null, {

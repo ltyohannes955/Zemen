@@ -13,6 +13,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     });
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async validate(accessToken: string, refreshToken: string, profile: any, done: VerifyCallback) {
     const { id, displayName, emails, photos } = profile;
     done(null, {

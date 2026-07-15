@@ -6,7 +6,6 @@ import { useCalendarNavigation } from '../hooks/useCalendarNavigation';
 import { useRovingGridFocus } from '../hooks/useRovingGridFocus';
 import { getTasksForDate } from '../lib/task-utils';
 import { ZemenCalendarHeader } from './ZemenCalendarHeader';
-import { ZemenHolidayBadge } from './ZemenHolidayBadge';
 import { ZemenEmptyState } from './ZemenEmptyState';
 import { toGregorian, toEthiopian, formatNumber } from '@zemen/core';
 import type { ViewTask } from '../types';
@@ -35,11 +34,11 @@ export type ZemenYearViewProps = {
 };
 
 function MiniMonthGrid({
-  year, month, calendar, tasks, onDayClick, onTaskClick, monthLabel, locale,
+  year, month, calendar, tasks, onDayClick, monthLabel, locale,
 }: {
   year: number; month: number; calendar: 'ethiopian' | 'gregorian';
   tasks: ViewTask[]; onDayClick: (day: number) => void;
-  onTaskClick?: (task: ViewTask) => void; monthLabel: string; locale?: 'en' | 'am';
+  monthLabel: string; locale?: 'en' | 'am';
 }): React.JSX.Element {
   const { weeks } = useMonthGrid(year, month, calendar);
   const rows = weeks.length;

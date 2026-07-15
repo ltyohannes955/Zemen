@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { useMonthGrid } from '../hooks/useMonthGrid';
 import { useCalendarNavigation } from '../hooks/useCalendarNavigation';
-import { getMonthName, toGregorian, toEthiopian, formatNumber } from '@zemen/core';
+import { getMonthName, formatNumber } from '@zemen/core';
 import type { DateValue } from '@zemen/core';
 
 /*
@@ -70,7 +70,6 @@ export function ZemenDateRangePicker({
   const { weeks } = useMonthGrid(year, month, viewCalendar);
 
   const [hoverDate, setHoverDate] = React.useState<DateValue | null>(null);
-  const [anchorMonth, setAnchorMonth] = React.useState<{ year: number; month: number } | null>(null);
 
   const rangeStart = value?.start ?? null;
   const rangeEnd = value?.end ?? null;

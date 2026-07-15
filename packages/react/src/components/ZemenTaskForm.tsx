@@ -80,10 +80,6 @@ const RECURRENCE_TYPES: { value: RecurrenceRuleInput['type']; label: string }[] 
 
 const WEEKDAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-function formatDate(date: SelectedDateInfo): string {
-  return `${date.gregYear}-${String(date.gregMonth).padStart(2, '0')}-${String(date.gregDay).padStart(2, '0')}`;
-}
-
 export function ZemenTaskForm({
   task,
   onSubmit,

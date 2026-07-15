@@ -1,5 +1,6 @@
 import { Controller, Post, Get, Patch, Body, UseGuards, Req } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
+import type { Request } from 'express';
 import { AuthService } from './auth.service';
 import { RegisterDto, LoginDto, RefreshTokenDto, ForgotPasswordDto, ResetPasswordDto } from './dto/auth.dto';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
@@ -43,14 +44,14 @@ export class AuthController {
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
   @Get('profile')
-  getProfile(@Req() req: any) {
-    return this.authService.getProfile(req.user.id);
+  getProfile(@Req() req: Request) {
+    return this.authService.getProfile((req as Request & { user: { id: string } }).user.id);
   }
 
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
   @Patch('profile')
-  updateProfile(@Req() req: any, @Body() data: { name?: string; timezone?: string }) {
-    return this.authService.updateProfile(req.user.id, data);
+  updateProfile(@Req() req: Request, @Body() data: { name?: string; timezone?: string }) {
+    return this.authService.updateProfile((req as Request & { user: { id: string } }).user.id, data);
   }
 }

@@ -9,7 +9,6 @@ import {
   toEthiopian,
   toGregorian,
   toISOString,
-  toEthiopianLocal,
   formatNumber,
   toGeezNumerals,
   getMonthName,

@@ -86,8 +86,6 @@ export function ZemenWeekView({
       return;
     }
     if (e.key === 'Tab') {
-      const container = e.currentTarget;
-      const columns = container.querySelectorAll('[data-week-column]');
       const currentIdx = focusedCol;
       if (e.shiftKey && currentIdx > 0) {
         e.preventDefault();

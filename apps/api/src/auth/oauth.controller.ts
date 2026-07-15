@@ -1,6 +1,7 @@
 import { Controller, Get, Req, Res, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
+import type { Request, Response } from 'express';
 import { AuthService } from './auth.service';
 
 @ApiTags('Auth')
@@ -14,13 +15,14 @@ export class OAuthController {
 
   @Get('google/callback')
   @UseGuards(AuthGuard('google'))
-  async googleAuthCallback(@Req() req: any, @Res() res: any) {
+  async googleAuthCallback(@Req() req: Request, @Res() res: Response) {
+    const user = (req as Request & { user: { providerId: string; email: string; name: string; avatarUrl: string } }).user;
     const result = await this.authService.findOrCreateOAuthUser(
       'google',
-      req.user.providerId,
-      req.user.email,
-      req.user.name,
-      req.user.avatarUrl,
+      user.providerId,
+      user.email,
+      user.name,
+      user.avatarUrl,
     );
     const redirectUrl = new URL(process.env.FRONTEND_URL || 'http://localhost:3000');
     redirectUrl.searchParams.set('token', result.accessToken);
@@ -34,13 +36,14 @@ export class OAuthController {
 
   @Get('github/callback')
   @UseGuards(AuthGuard('github'))
-  async githubAuthCallback(@Req() req: any, @Res() res: any) {
+  async githubAuthCallback(@Req() req: Request, @Res() res: Response) {
+    const user = (req as Request & { user: { providerId: string; email: string; name: string; avatarUrl: string } }).user;
     const result = await this.authService.findOrCreateOAuthUser(
       'github',
-      req.user.providerId,
-      req.user.email,
-      req.user.name,
-      req.user.avatarUrl,
+      user.providerId,
+      user.email,
+      user.name,
+      user.avatarUrl,
     );
     const redirectUrl = new URL(process.env.FRONTEND_URL || 'http://localhost:3000');
     redirectUrl.searchParams.set('token', result.accessToken);

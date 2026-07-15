@@ -69,12 +69,12 @@ export class CreateTaskDto {
   @ApiPropertyOptional()
   @IsOptional()
   @IsObject()
-  recurrence?: Record<string, any>;
+  recurrence?: Record<string, unknown>;
 
   @ApiPropertyOptional()
   @IsOptional()
   @IsObject()
-  reminder?: Record<string, any>;
+  reminder?: Record<string, unknown>;
 
   @ApiPropertyOptional()
   @IsOptional()
@@ -165,12 +165,12 @@ export class UpdateTaskDto {
   @ApiPropertyOptional()
   @IsOptional()
   @IsObject()
-  recurrence?: Record<string, any>;
+  recurrence?: Record<string, unknown>;
 
   @ApiPropertyOptional()
   @IsOptional()
   @IsObject()
-  reminder?: Record<string, any>;
+  reminder?: Record<string, unknown>;
 
   @ApiPropertyOptional()
   @IsOptional()

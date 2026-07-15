@@ -4,7 +4,7 @@ import * as React from 'react';
 import { useMonthGrid } from '../hooks/useMonthGrid';
 import { useCalendarNavigation } from '../hooks/useCalendarNavigation';
 import { useRovingGridFocus } from '../hooks/useRovingGridFocus';
-import { getMonthName, toGregorian, toEthiopian, formatNumber } from '@zemen/core';
+import { getMonthName, toEthiopian, formatNumber } from '@zemen/core';
 import type { Locale } from '@zemen/core';
 
 const ETH_MONTH_NAMES = [

@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
+import type { Prisma } from '@prisma/client';
 import { CreateTaskDto, UpdateTaskDto, UpdateStatusDto, TaskQueryDto } from './dto/tasks.dto';
 import { toGregorian } from '@zemen/core';
 import type { EthiopianDate } from '@zemen/core';
@@ -36,7 +37,7 @@ export class TasksService {
     const limit = query.limit || 50;
     const skip = (page - 1) * limit;
 
-    const where: any = { userId, deletedAt: null };
+    const where: Prisma.TaskWhereInput = { userId, deletedAt: null };
 
     if (query.status) where.status = query.status;
     if (query.priority) where.priority = query.priority;
@@ -56,9 +57,7 @@ export class TasksService {
 
     if (query.upcoming === 'true') {
       const now = new Date();
-      const upcomingDate = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
       where.primaryYear = { gte: now.getUTCFullYear() };
-      // Simplified: tasks with recent dates
     }
 
     const [data, total] = await Promise.all([
@@ -165,10 +164,8 @@ export class TasksService {
       .filter((task) => task.gregorianDate >= startStr && task.gregorianDate <= endStr);
   }
 
-  async getRange(userId: string, start: string, end: string) {
-    const startDate = new Date(start);
-    const endDate = new Date(end);
-
+  async getRange(userId: string, _start: string, _end: string) {
+    void _start; void _end;
     return this.prisma.task.findMany({
       where: {
         userId,

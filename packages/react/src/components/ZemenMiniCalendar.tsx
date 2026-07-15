@@ -5,7 +5,7 @@ import { useMonthGrid } from '../hooks/useMonthGrid';
 import { useCalendarNavigation } from '../hooks/useCalendarNavigation';
 import { useRovingGridFocus } from '../hooks/useRovingGridFocus';
 import { ZemenHolidayBadge } from './ZemenHolidayBadge';
-import { toGregorian, toEthiopian, formatNumber } from '@zemen/core';
+import { toEthiopian, formatNumber } from '@zemen/core';
 
 const ETH_NAMES = ['Meskerem','Tikimt','Hidar','Tahsas','Tir','Yekatit','Megabit','Miazia','Genbot','Sene','Hamle','Nehase','Pagume'];
 const GREG_SHORT = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -42,7 +42,7 @@ export function ZemenMiniCalendar({
       const cell = weeks[r]?.[c];
       if (cell?.day === null) return;
       if (onDateSelect) {
-        const d = viewCalendar === 'ethiopian' && cell?.ethiopian ? cell.ethiopian : cell?.gregorian!;
+        const d = viewCalendar === 'ethiopian' && cell.ethiopian ? cell.ethiopian : cell.gregorian!;
         onDateSelect({ year: d.year, month: d.month, day: d.day });
       }
     }, [weeks, viewCalendar, onDateSelect]),

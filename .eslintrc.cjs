@@ -3,7 +3,7 @@ module.exports = {
   parser: "@typescript-eslint/parser",
   plugins: ["@typescript-eslint"],
   extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
-  ignorePatterns: ["**/dist/**", "**/.next/**", "**/node_modules/**"],
+  ignorePatterns: ["**/dist/**", "**/.next/**", "**/node_modules/**", "**/storybook-static/**"],
   overrides: [
     {
       files: ["**/next-env.d.ts"],

@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { toEthiopianLocal, toGregorian, formatNumber } from '@zemen/core';
+import { toEthiopianLocal, formatNumber } from '@zemen/core';
 import { ZemenTaskCard } from './ZemenTaskCard';
 import { ZemenEmptyState } from './ZemenEmptyState';
 import type { ViewTask } from '../types';

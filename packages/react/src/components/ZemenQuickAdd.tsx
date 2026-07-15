@@ -50,7 +50,6 @@ export function ZemenQuickAdd({
   open,
   onClose,
   onSubmit,
-  defaultDate,
   calendar = 'ethiopian',
   locale = 'en',
   className = '',
