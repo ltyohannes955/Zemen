@@ -25,8 +25,8 @@ export class TasksService {
         time: dto.time || null,
         priority: dto.priority || 'none',
         status: dto.status || 'pending',
-        recurrence: dto.recurrence || undefined,
-        reminder: dto.reminder || undefined,
+        recurrence: (dto.recurrence as Prisma.InputJsonValue) || undefined,
+        reminder: (dto.reminder as Prisma.InputJsonValue) || undefined,
         tags: dto.tags || [],
       },
     });
@@ -104,8 +104,8 @@ export class TasksService {
         ...(dto.priority !== undefined && { priority: dto.priority }),
         ...(dto.status !== undefined && { status: dto.status }),
         ...(dto.position !== undefined && { position: dto.position }),
-        ...(dto.recurrence !== undefined && { recurrence: dto.recurrence }),
-        ...(dto.reminder !== undefined && { reminder: dto.reminder }),
+        ...(dto.recurrence !== undefined && { recurrence: dto.recurrence as Prisma.InputJsonValue }),
+        ...(dto.reminder !== undefined && { reminder: dto.reminder as Prisma.InputJsonValue }),
         ...(dto.tags !== undefined && { tags: dto.tags }),
       },
     });
