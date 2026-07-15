@@ -1,6 +1,5 @@
 import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import type { Prisma } from '@prisma/client';
 import { CreateTaskDto, UpdateTaskDto, UpdateStatusDto, TaskQueryDto } from './dto/tasks.dto';
 import { toGregorian } from '@zemen/core';
 import type { EthiopianDate } from '@zemen/core';
@@ -25,8 +24,10 @@ export class TasksService {
         time: dto.time || null,
         priority: dto.priority || 'none',
         status: dto.status || 'pending',
-        recurrence: (dto.recurrence as Prisma.InputJsonValue) || undefined,
-        reminder: (dto.reminder as Prisma.InputJsonValue) || undefined,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        recurrence: dto.recurrence as any || undefined,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        reminder: dto.reminder as any || undefined,
         tags: dto.tags || [],
       },
     });
@@ -37,7 +38,7 @@ export class TasksService {
     const limit = query.limit || 50;
     const skip = (page - 1) * limit;
 
-    const where: Prisma.TaskWhereInput = { userId, deletedAt: null };
+    const where: Record<string, unknown> = { userId, deletedAt: null };
 
     if (query.status) where.status = query.status;
     if (query.priority) where.priority = query.priority;
@@ -104,8 +105,10 @@ export class TasksService {
         ...(dto.priority !== undefined && { priority: dto.priority }),
         ...(dto.status !== undefined && { status: dto.status }),
         ...(dto.position !== undefined && { position: dto.position }),
-        ...(dto.recurrence !== undefined && { recurrence: dto.recurrence as Prisma.InputJsonValue }),
-        ...(dto.reminder !== undefined && { reminder: dto.reminder as Prisma.InputJsonValue }),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ...(dto.recurrence !== undefined && { recurrence: dto.recurrence as any }),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ...(dto.reminder !== undefined && { reminder: dto.reminder as any }),
         ...(dto.tags !== undefined && { tags: dto.tags }),
       },
     });
@@ -157,11 +160,13 @@ export class TasksService {
     });
 
     return tasks
-      .map((task) => ({
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .map((task: any) => ({
         ...task,
         gregorianDate: this.computeGregorianDate(task),
       }))
-      .filter((task) => task.gregorianDate >= startStr && task.gregorianDate <= endStr);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .filter((task: any) => task.gregorianDate >= startStr && task.gregorianDate <= endStr);
   }
 
   async getRange(userId: string, _start: string, _end: string) {
