@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react';
+import * as React from 'react';
 import { api, setTokens, clearTokens } from '../lib/api-client';
 import type { AuthResponse } from '@zemen/scheduler';
 
@@ -19,13 +19,13 @@ interface AuthContextType {
   logout: () => void;
 }
 
-const AuthContext = createContext<AuthContextType | null>(null);
+const AuthContext = React.createContext<AuthContextType | null>(null);
 
-export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+export function AuthProvider({ children }: { children: React.ReactNode }) {
+  const [user, setUser] = React.useState<User | null>(null);
+  const [loading, setLoading] = React.useState(true);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const token = localStorage.getItem('zemen_access_token');
     if (token) {
       api.auth.profile()
@@ -37,17 +37,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  const login = useCallback(async (email: string, password: string) => {
+  const login = React.useCallback(async (email: string, password: string) => {
     const res = await api.auth.login({ email, password });
     handleAuthResponse(res);
   }, []);
 
-  const register = useCallback(async (email: string, password: string, name?: string) => {
+  const register = React.useCallback(async (email: string, password: string, name?: string) => {
     const res = await api.auth.register({ email, password, name });
     handleAuthResponse(res);
   }, []);
 
-  const logout = useCallback(() => {
+  const logout = React.useCallback(() => {
     clearTokens();
     setUser(null);
   }, []);
@@ -65,7 +65,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 }
 
 export function useAuth() {
-  const ctx = useContext(AuthContext);
+  const ctx = React.useContext(AuthContext);
   if (!ctx) throw new Error('useAuth must be used within AuthProvider');
   return ctx;
 }

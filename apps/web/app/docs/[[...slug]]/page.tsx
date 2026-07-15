@@ -1,14 +1,18 @@
-import { notFound } from 'next/navigation';
+import { redirect, notFound } from 'next/navigation';
 import { getDocPage, DOC_PAGES } from '../lib/content';
-import { DocTOC } from './toc';
-import { DocContent } from './content';
+import { DocTOC } from '../lib/toc';
 
 export function generateStaticParams() {
-  return DOC_PAGES.map((p) => ({ slug: p.slug }));
+  return DOC_PAGES.map((p) => ({ slug: p.slug.split('/') }));
 }
 
-export default async function DocPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+export default async function DocPage({ params }: { params: Promise<{ slug?: string[] }> }) {
+  const resolved = await params;
+  if (!resolved.slug || resolved.slug.length === 0) {
+    redirect('/docs/introduction');
+  }
+
+  const slug = resolved.slug.join('/');
 
   const page = getDocPage(slug);
   if (!page) {
@@ -24,12 +28,12 @@ export default async function DocPage({ params }: { params: Promise<{ slug: stri
           {page.sections.map((section) => (
             <section key={section.id} id={section.id}>
               <h2 className="text-xl font-semibold tracking-tight mb-3">{section.heading}</h2>
-              <DocContent content={section.content} />
+              {section.content}
             </section>
           ))}
         </div>
       </article>
-      <DocTOC sections={page.sections} />
+      <DocTOC sections={page.sections.map((s) => ({ id: s.id, heading: s.heading }))} />
     </div>
   );
 }

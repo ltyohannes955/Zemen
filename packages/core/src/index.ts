@@ -186,7 +186,11 @@ export function toGregorian(ethDate: EthiopianDate): Date {
   const ethSerial = ethToSerialDay(ethDate);
   const unixDays = ethSerial + ETH_TO_UNIX_DAYS_OFFSET;
   const { year, month, day } = unixDaysToGregorian(unixDays);
-  return new Date(Date.UTC(year, month - 1, day));
+  const d = new Date(Date.UTC(year, month - 1, day));
+  if (year < 100 || year > 9999) {
+    d.setUTCFullYear(year);
+  }
+  return d;
 }
 
 /**
@@ -270,3 +274,10 @@ export {
   type Locale,
   type LocaleData,
 } from './locales';
+
+export { ETHIOPIAN_HOLIDAYS, getHoliday } from './holidays';
+export type { EthiopianHoliday } from './holidays';
+
+export type { DateValue } from './types';
+
+export { toGeezNumerals, formatNumber } from './numerals';

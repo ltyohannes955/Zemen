@@ -42,6 +42,11 @@ export interface Task {
   position: number;
   createdAt: string;
   updatedAt: string;
+  /** Multi-day/all-day: optional end date. If set together with isAllDay, renders as a multi-day bar. */
+  endYear?: number;
+  endMonth?: number;
+  endDay?: number;
+  isAllDay?: boolean;
 }
 
 export function getEthiopianDate(task: Task): EthiopianDate {
@@ -68,6 +73,10 @@ export interface CreateTaskInput {
   recurrence?: RecurrenceRule | null;
   reminder?: ReminderRule | null;
   tags?: string[];
+  endYear?: number;
+  endMonth?: number;
+  endDay?: number;
+  isAllDay?: boolean;
 }
 
 export interface UpdateTaskInput {
@@ -88,6 +97,10 @@ export interface UpdateTaskInput {
   reminder?: ReminderRule | null;
   tags?: string[];
   position?: number;
+  endYear?: number;
+  endMonth?: number;
+  endDay?: number;
+  isAllDay?: boolean;
 }
 
 export interface TaskFilters {
