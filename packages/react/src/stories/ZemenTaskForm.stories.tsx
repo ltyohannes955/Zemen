@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ZemenTaskForm } from '../components/ZemenTaskForm';
-import type { ViewTask } from '../../types';
+import type { ViewTask } from '../types';
 
-const sampleTask: ViewTask = { id: '1', title: 'Edit me', dateType: 'ethiopian', primaryYear: 2015, primaryMonth: 1, primaryDay: 1, priority: 'medium', status: 'pending', tags: ['work'] };
+const sampleTask: ViewTask = { id: '1', title: 'Edit me', dateType: 'ethiopian', primaryYear: 2015, primaryMonth: 1, primaryDay: 1, time: null, priority: 'medium', status: 'pending', tags: ['work'] };
 
 const meta: Meta<typeof ZemenTaskForm> = {
   title: 'Forms/ZemenTaskForm',

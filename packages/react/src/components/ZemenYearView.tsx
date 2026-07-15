@@ -26,7 +26,6 @@ export type ZemenYearViewProps = {
   tasks?: ViewTask[];
   onMonthClick?: (info: MonthClickInfo) => void;
   onDayClick?: (day: number, month: number, year: number) => void;
-  onTaskClick?: (task: ViewTask) => void;
   locale?: 'en' | 'am';
   isLoading?: boolean;
   emptyState?: React.ReactNode;
@@ -95,7 +94,6 @@ export function ZemenYearView({
   tasks = [],
   onMonthClick,
   onDayClick,
-  onTaskClick,
   locale = 'en',
   isLoading = false,
   emptyState,
@@ -158,7 +156,6 @@ export function ZemenYearView({
                 calendar={calendar}
                 tasks={tasks}
                 onDayClick={(d) => onDayClick?.(d, month, year)}
-                onTaskClick={onTaskClick}
                 monthLabel={label}
                 locale={locale}
               />

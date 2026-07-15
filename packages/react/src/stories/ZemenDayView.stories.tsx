@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ZemenDayView } from '../components/ZemenDayView';
-import type { ViewTask } from '../../types';
+import type { ViewTask } from '../types';
 
 const sampleTasks: ViewTask[] = [
   { id: '1', title: 'Morning standup', dateType: 'gregorian', primaryYear: 2024, primaryMonth: 6, primaryDay: 10, time: '09:00', priority: 'medium', status: 'pending' },
